@@ -10,7 +10,7 @@ import aiRoutes from "./backend/routes/ai.routes.js";
 import jobRoutes from "./backend/routes/job.routes.js";
 
 const app = express();
-const PORT = process.env.PORT || 6999; 
+const PORT = process.env.PORT || 6999;
 
 // --- Middleware ---
 app.use(express.json()); // Parses incoming JSON requests
@@ -20,7 +20,7 @@ app.use(cors({
     origin: [
         "http://localhost:3500",      // Local Frontend
         "http://localhost:5173",      // Vite Default Port
-        process.env.FRONTEND_URL      // Production Frontend URL (Set this on Render/Vercel)
+        "https://ai-resume-builder-frontend-ten.vercel.app/"
     ],
     credentials: true,                // Allows Cookies & Authorization Headers
     methods: ["GET", "POST", "PUT", "DELETE"],
@@ -46,7 +46,7 @@ app.get("/", (req, res) => {
 const startServer = async () => {
     try {
         await connectDB();
-        app.listen(PORT, () => { 
+        app.listen(PORT, () => {
             console.log(`✅ Server running on port ${PORT}`);
             console.log(`👉 Local: http://localhost:${PORT}`);
         });
